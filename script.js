@@ -193,6 +193,7 @@ function single() {
         }
 
         cellElements[index].classList.add(mark);
+        cellElements[index].removeEventListener('click', handleClick)
         checkResultBot(mark);
     }
 
