@@ -178,7 +178,7 @@ function single() {
                 console.log("FOUND EMPTY");
 
                 cellElements[i].classList.add(mark);
-                let score = minimax(cellElements, 0, false,mark);
+                let score = minimax(cellElements, 0, false);
                 cellElements[i].classList.remove(mark);
                 console.log(score)
                 if (score > bestScore) {
@@ -197,7 +197,7 @@ function single() {
     }
 
 
-    function minimax(cellElements, depth, isMaximizing,mark) {
+    function minimax(cellElements, depth, isMaximizing) {
 
         if (((winCombi.some(combination => {
             return combination.every(index => {
@@ -206,17 +206,18 @@ function single() {
         })))) {
             return 1;
         }
-        else if ([...cellElements].every(cell => {
-            return cell.classList.contains("cross") || cell.classList.contains("circle")
-        })) {
-            return 0;
-        }
         else if (((winCombi.some(combination => {
             return combination.every(index => {
                 return cellElements[index].classList.contains(mark == 'circle' ? 'cross' : 'circle')
             })
         }))))
         return -1;
+        else if ([...cellElements].every(cell => {
+            return cell.classList.contains("cross") || cell.classList.contains("circle")
+        })) {
+            return 0;
+        }
+        
 
         if (isMaximizing) {
             let bestScore = -Infinity;
@@ -225,7 +226,7 @@ function single() {
                 // Is the spot available?
                 if (cellElements[i].classList.value === 'cell') {
                     cellElements[i].classList.add(mark);
-                    let score = minimax(cellElements, depth + 1, false,mark);
+                    let score = minimax(cellElements, depth + 1, false);
                     cellElements[i].classList.remove(mark);
 
                     bestScore = (score > bestScore) ? score : bestScore;
@@ -242,7 +243,7 @@ function single() {
                 // Is the spot available?
                 if (cellElements[i].classList.value === 'cell') {
                     cellElements[i].classList.add(mark == 'circle' ? 'cross' : 'circle');
-                    let score = minimax(cellElements, depth + 1, true,mark );
+                    let score = minimax(cellElements, depth + 1, true );
                     cellElements[i].classList.remove(mark == 'circle' ? 'cross' : 'circle');
 
                     bestScore = (score < bestScore) ? score : bestScore;
