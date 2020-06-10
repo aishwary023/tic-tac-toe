@@ -1,5 +1,5 @@
 :root {
-    --cellsize: 9.375em;
+    --cellsize: 5.375em;
     --contsize: calc(var(--cellsize)*0.9);
     --message: "YOU WON!"
 }
@@ -103,9 +103,7 @@ a:hover{
     font-size: 5rem;
     color: white;
 }
-#startBtn,#restartBtn{
-    font-size: 1.5em;
-}
+
 
 #startPage{
     position: fixed;
@@ -113,7 +111,7 @@ a:hover{
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    font-size: 1.5em;
+    /* font-size: 1.5em; */
     top: 10vh;
     left: 0;
     right: 0;
